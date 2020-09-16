@@ -1,0 +1,19 @@
+Package: rbs
+Type: Package
+Title: Response Best-subset Selector for Multivariate Regression
+Version: 1.0.1
+Author: Jianhua Hu [aut], 
+        Jian Huang [aut],
+        Xu Liu [aut,cre],
+        Feng Qiu [aut]
+Maintainer: Xu Liu <liu.xu@sufe.edu.cn>
+Description: Provide a procedure to select response variables and estimate regression coefficients simultaneously. It also provides the screening procedure based on the distance correlation, the solutions to the quadratic 0-1 programming problems by transferring to k-flipping optimization problems and to continuous quadratic programming problems, and the multi-test procedure including Benjamini-Hochberg and Bonferroni correction.
+License: GPL (>= 2)
+Depends: R (>= 3.2.0)
+Imports: quadprog
+LazyData: true
+NeedsCompilation: yes
+Repository: CRAN
+URL: https://github.com/xliusufe/rbs
+Encoding: UTF-8
+Packaged: 2020-08-12 07:41:52 UTC; Xu Liu
