@@ -64,7 +64,6 @@ rbs_qp <- function(x,y,V=NULL,gamma=1.5,lambda=NULL,criteria=2,tau=1){
   q = ncol(y)
   p = ncol(x)
   if(is.null(p)) p = 1
-  
   b0 = ridge(y,x,0)
   if(criteria==0){
     dmat <- Alg(x,y,V,gamma,lambda)
@@ -78,7 +77,7 @@ rbs_qp <- function(x,y,V=NULL,gamma=1.5,lambda=NULL,criteria=2,tau=1){
     dmat = matrix(0,s,q)
     bic = rep(0,s)
     for(i in 1:s){
-      dmat[i,] <- tmp <- Alg(x,y,gamma,lambda[i])
+      dmat[i,] <- tmp <- Alg(x,y,V,gamma,lambda[i])
       loss = base::norm(y-x%*%b0%*%diag(tmp),"F")
       df = sum(tmp!=0)
       if(criteria==1)
@@ -97,6 +96,6 @@ rbs_qp <- function(x,y,V=NULL,gamma=1.5,lambda=NULL,criteria=2,tau=1){
     fit$bic <- bic
     fit$selected <- id
   }
-  
+  return(fit)
 }
 

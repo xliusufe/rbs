@@ -1,5 +1,5 @@
 # RBS
-R package "rbs" providing a procedure to select the response varibales and estimate regression coefficients simultaneously. It also provides the screening procedure based on the distance correlation, the solution to the quadratic 0-1 programming problems by transferring to k-flipping optimization problems and to continuous quadratic programming problems, and the multiple test procedure including Benjamini-Hochberg and Bonferroni correction.
+R package "rbs" providing a procedure to select the response variables and estimate regression coefficients simultaneously. It also provides the screening procedure based on the distance correlation, the solution to the quadratic 0-1 programming problems by transferring to k-flipping optimization problems and to continuous quadratic programming problems, and the multiple test procedure including Benjamini-Hochberg and Bonferroni correction.
 
 # Installation
 
@@ -10,7 +10,7 @@ R package "rbs" providing a procedure to select the response varibales and estim
 # Usage
 
    - [x] [rbs-manual.pdf](https://github.com/xliusufe/rbs/blob/master/inst/rbs-manual.pdf) ---------- Details of the usage of the package.
-   - [x] [rbs](https://github.com/xliusufe/RBSSpy) ------------------------ the corresponding `Python` package
+   - [x] [rbs](https://github.com/xliusufe/RBSSpy) ------------------------ The corresponding `Python` package
 
 # Example
     library(rbs)
