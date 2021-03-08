@@ -193,7 +193,7 @@ double Flip_single(int *delta, double *theta, double *x, double *y, double *V, d
 
 	for(k=0;k<q;k++){
 		for(j=0;j<p;j++){
-			tmp = 0.0; 
+			tmp = 0.0;
 			for(i=0;i<n;i++) 	tmp += Q[j*n+i]*y[k*n+i];
 			qy[q*j+k] = tmp;
 		}
@@ -205,7 +205,7 @@ double Flip_single(int *delta, double *theta, double *x, double *y, double *V, d
 				for(i=0;i<n;i++)	tmp += y[k*n+i]*y[j*n+i];
 				for(i=0;i<p;i++)	tmp1 += qy[i*q+k]*qy[i*q+j];
 				A[k*q+j] = V[k*q+j]*(tmp - tmp1);
-				if(j==k) 			b[k] = -lambda*V[k*q+k]*pow(tmp1,ga);
+				if(j==k) b[k] 		= -lambda*V[k*q+k]*pow(tmp1,ga);
 			}
 		}
 	}
@@ -217,24 +217,27 @@ double Flip_single(int *delta, double *theta, double *x, double *y, double *V, d
 				for(i=0;i<p;i++)	tmp1 += qy[i*q+k]*qy[i*q+j];
 				V[k*q+j] = (tmp - tmp1)/(n-p);
 				A[k*q+j] = tmp - tmp1;
-				if(j==k) 			b[k] = -lambda*pow(tmp1,ga);
+				if(j==k) b[k] = -lambda*pow(tmp1,ga);
 			}
 		}
 		MatrixInvSymmetric(V,q);
 		for(k=0;k<q;k++){
 			for(j=0;j<q;j++){
 				A[k*q+j] *= V[k*q+j];
-				if(j==k) 	b[k] *= V[k*q+k];
+				if(j==k) b[k] *= V[k*q+k];
 			}
 		}
 	}
 
 
 
-	for(j=0;j<q;j++) 		delta[j] = 0;
+	for(j=0;j<q;j++) {
+		delta[j] 	= 0;
+		A[j*q+j] 	-= b[j];
+	}
 	if(isflip1==1)			obj = flip1(A,b,delta,q,q);
 	else if(isflip1==2)		obj = flip2(A,b,delta,q,q);
-	else 					obj = flip12(A,b,delta,q,q);	
+	else 					obj = flip12(A,b,delta,q,q);
 
 	for(i=0;i<p*q;i++) 	theta[i] = 0.0;
 	UpTriangularInv(invR, p, R);
@@ -244,9 +247,9 @@ double Flip_single(int *delta, double *theta, double *x, double *y, double *V, d
 				tmp = 0.0;
 				for(i=j;i<p;i++)	tmp += invR[i*p+j]*qy[i*q+k];
 				theta[j*q+k] = tmp;
-			}			
+			}
 		}
-	}	
+	}
 	free(Q);
 	free(R);
 	free(invR);
@@ -281,7 +284,7 @@ int Flip_bic(int *delta, double *theta, double *bic, double *x, double *y, doubl
 	A 		= (double*)	malloc(sizeof(double)*q*q);  	// A in R^{q*q}
 	b 		= (double*)	malloc(sizeof(double)*q);    	// b in R^{q}
 	bk 		= (double*)	malloc(sizeof(double)*q);    	// bk in R^{q}
-	
+
 	QRDecompN(Q, R, x, n, p);
 
 	for(k=0;k<q;k++){
@@ -297,8 +300,9 @@ int Flip_bic(int *delta, double *theta, double *bic, double *x, double *y, doubl
 				tmp = tmp1 = 0.0;
 				for(i=0;i<n;i++)	tmp += y[k*n+i]*y[j*n+i];
 				for(i=0;i<p;i++)	tmp1 += qy[i*q+k]*qy[i*q+j];
-				A[k*q+j] = V[k*q+j]*(tmp - tmp1);
-				if(j==k) 	b[k] = V[k*q+k]*pow(tmp1,ga);
+				A[k*q+j] 	= V[k*q+j]*(tmp - tmp1);
+				b[k] 		= V[k*q+k]*pow(tmp1,ga);
+				if(j==k)    b[k] = V[k*q+k]*pow(tmp1,ga);
 			}
 		}
 	}
@@ -321,12 +325,14 @@ int Flip_bic(int *delta, double *theta, double *bic, double *x, double *y, doubl
 			}
 		}
 	}
-	
-	for(j=0;j<q;j++) deltak[j] = 0;
+
 	for(k=0;k<nlam;k++){
 		df = 0;
-		for(i=0;i<q;i++)		bk[i] = -lambda[k]*b[i];		
-		//for(j=0;j<q;j++) 		deltak[j] = 0;
+		for(i=0;i<q;i++){
+			deltak[i] 	= 0;
+			bk[i] 		= -lambda[k]*b[i];
+			A[i*q+i] 	-= b[i];
+		}
 		if(isflip1==1)			obj = flip1(A,bk,deltak,q,q);
 		else if(isflip1==2)		obj = flip2(A,bk,deltak,q,q);
 		else 					obj = flip12(A,bk,deltak,q,q);
@@ -443,10 +449,13 @@ void Flip_cv(double *bic, double *x, double *y, double *xt, double *yt, double *
 			}
 		}
 	}
-	
-	for(j=0;j<q;j++) deltak[j] = 0;
+
 	for(s=0;s<nlam;s++){
-		for(i=0;i<q;i++)		bk[i] = -lambda[s]*b[i];		
+		for(i=0;i<q;i++){
+			deltak[i] 	= 0;
+			bk[i] 		= -lambda[s]*b[i];
+			A[i*q+i] 	-= bk[i];
+		}
 		if(isflip1==1)			flip1(A, bk,deltak,q,q);
 		else if(isflip1==2)		flip2(A, bk,deltak,q,q);
 		else 					flip12(A,bk,deltak,q,q);
