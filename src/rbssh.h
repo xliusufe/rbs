@@ -30,5 +30,12 @@ double objectfun(double *y, double *qy, int *delta, int n, int p, int q);
 	// y in R^{q*n}
 	// delta in R^{q}
 
+double flip1(double *Q, double *b, int *x0, int q, int maxstep);
+
+double flip2(double *Q, double *b, int *x0, int q, int maxstep);
+
+double flip12(double *Q, double *b, int *x0, int q, int maxstep);
+
+void eigencmp(double *Z, int n, double gamma);
 
 #endif // RBSS_H_INCLUDED
