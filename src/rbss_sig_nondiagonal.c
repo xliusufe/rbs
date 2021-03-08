@@ -124,13 +124,14 @@ int Flip_nd_bic(int *delta, double *theta, double *bic, double *x, double *y, do
 
 	int i,j,k,minid,df,*deltak;
 	double tmp,tmp1,minbic,obj;
-	double *Q, *R, *invR, *qy, *A, *b, *bk;
+	double *Q, *R, *invR, *qy, *A, *b, *bk, *B;
 	Q 		= (double*)	malloc(sizeof(double)*n*p);  	// Q in R^{p*n}
 	R 		= (double*)	malloc(sizeof(double)*p*p);  	// R in R^{p*p}
 	invR 	= (double*)	malloc(sizeof(double)*p*p);		// R in R^{p*p}
 	qy 		= (double*)	malloc(sizeof(double)*p*q); 	// qy in R^{p*q}
 	deltak 	= (int*)	malloc(sizeof(int)*q); 			// qy in R^{p*nlam}
 	A 		= (double*)	malloc(sizeof(double)*q*q);  	// A in R^{q*q}
+	B 		= (double*)malloc(sizeof(double)*q*q);  	// B in R^{q*q}
 	b 		= (double*)	malloc(sizeof(double)*q);    	// b in R^{q}
 	bk 		= (double*)	malloc(sizeof(double)*q);    	// bk in R^{q}
 
@@ -258,13 +259,14 @@ void Flip_nd_cv(double *bic, double *x, double *y, double *xt, double *yt, doubl
 
 	int i,j,k,s,*deltak;
 	double tmp,tmp1;
-	double *Q, *R, *invR, *qy, *A, *b, *bk, *theta;
+	double *Q, *R, *invR, *qy, *A, *b, *bk, *theta, *B;
 	Q 		= (double*)	malloc(sizeof(double)*n*p);  	// Q in R^{p*n}
 	R 		= (double*)	malloc(sizeof(double)*p*p);  	// R in R^{p*p}
 	invR 	= (double*)	malloc(sizeof(double)*p*p);		// R in R^{p*p}
 	qy 		= (double*)	malloc(sizeof(double)*p*q); 	// qy in R^{p*q}
 	deltak 	= (int*)	malloc(sizeof(int)*q); 			// qy in R^{p*nlam}
 	A 		= (double*)	malloc(sizeof(double)*q*q);  	// A in R^{q*q}
+	B 		= (double*)malloc(sizeof(double)*q*q);  	// B in R^{q*q}
 	b 		= (double*)	malloc(sizeof(double)*q);    	// b in R^{q}
 	bk 		= (double*)	malloc(sizeof(double)*q);    	// bk in R^{q}
 	theta	= (double*)	malloc(sizeof(double)*p*q);  	// R in R^{p*p}
