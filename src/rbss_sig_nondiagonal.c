@@ -6,7 +6,7 @@
 #include <Rinternals.h> // required for SEXP et.al.;
 #include "rbssh.h"
 
-double Flip_nd_single(int *delta, double *theta, double *x, double *y, double *V, double ga, 
+double Flip_nd_single(int *delta, double *theta, double *x, double *y, double *V, double ga,
 						double lambda, int n, int p, int q, int isV, int isflip1){
 	// input:
 	// x in R^{p*n}
@@ -76,7 +76,7 @@ double Flip_nd_single(int *delta, double *theta, double *x, double *y, double *V
 				B[k*q+j] *= lambda*V[k*q+j];
 				A[k*q+j] *= V[k*q+j];
 				A[k*q+j] += B[k*q+j];
-				tmp -= B[k*q+j];
+				tmp 	 -= B[k*q+j];
 			}
 			b[k] = tmp;
 		}
@@ -239,6 +239,7 @@ int Flip_nd_bic(int *delta, double *theta, double *bic, double *x, double *y, do
 	free(qy);
 	free(deltak);
 	free(A);
+	free(B);
 	free(b);
 	free(bk);
 	return minid;
@@ -353,6 +354,7 @@ void Flip_nd_cv(double *bic, double *x, double *y, double *xt, double *yt, doubl
 	free(qy);
 	free(deltak);
 	free(A);
+	free(B);
 	free(b);
 	free(bk);
 	free(theta);

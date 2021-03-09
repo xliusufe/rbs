@@ -241,7 +241,7 @@ double flip1(double *Q, double *b, int *x0, int q, int maxstep){
 
 		f0 += betak[jk];
 		for(i=0;i<q;i++) Qx[i] += (1-2*x0[jk])*Q[i+jk*q];
-		x0[jk] = 1 - x0[jk];  
+		x0[jk] = 1 - x0[jk];
 	}
 	free(Qx);
 	free(diagQ);
