@@ -7,7 +7,7 @@
   Select the response varibales and estimate regression coefficients simultaneously for multivariate linear regression with considering covariance of responses, in which the quadratic 0-1 programming problems are transferred to k-flipping optimization problems.
 }
 
-\usage{rbs_sig(x,y,V=NULL,gamma=1.5, lambda=NULL,criteria=2,nflip=1,tau=1,is_Bdiag=TRUE)
+\usage{rbs_sig(x,y,V=NULL,gamma=1.5, lambda=NULL,criteria=2,nflip=1,tau=1)
 }
 
 \arguments{
@@ -29,8 +29,6 @@
   \item{nflip}{An integer \eqn{1, 2, 3} with one-flip if \code{nflip=1}, two-flip if \code{nflip=2}, and hybrid if \code{nflip=3}. Default is \code{nflip=1} corresponding to one-flip.}
   
   \item{tau}{A constant to adjust \code{AIC} creteria. Default is \code{tau=1}.}
-  
-  \item{is_Bdiag}{A logical flag. The matrix \eqn{B} is diagonal (default=TRUE) or non-diagonal (FALSE).}
 }
 
 \value{

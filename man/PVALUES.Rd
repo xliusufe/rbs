@@ -7,7 +7,7 @@
    P-values for F-test of the separate responses for the multivariate linear regression models.
 }
 
-\usage{pval(x,y,criteria=NULL,alpha=0.05,gamma=0.15,family="Fdist")
+\usage{pval(x,y,criteria=NULL,alpha=0.05,gamma=1.15,family="Fdist",isbic=FALSE)
 }
 
 \arguments{
@@ -24,6 +24,8 @@ procedure if \code{criteria="BH"}, and Bonferroni correction if \code{criteria="
   \item{gamma}{A positive separating parameter \eqn{\gamma} if RBS procedure is used. Default is \code{gamma=1.15}.}
   
   \item{family}{A string representing one of the built-in families, by which P-values are calculated. F-test is used if \code{family="Fdist"} with the first degrees of freedom \eqn{p} and the second degrees of freedom \eqn{n-p}, and \eqn{\chi^2}-test is used if \code{family="Chi2"} with degrees of freedom \eqn{p}. Default is \code{family="Fdist"} (F-test).}
+   
+   \item{isbic}{A logical flag. The \code{BIC} criteria is used (\code{TRUE}) or not (\code{default = FALSE}).}
 }
 
 \value{
