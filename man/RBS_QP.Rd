@@ -43,7 +43,7 @@
 \references{
 Chen, W. and L. Zhang (2010). Global Optimality Conditions for Quadratic 0-1 Optimization Problems. Journal of Global Optimization 46(2), 191-206.
 
-Hu, J., Huang, J., Liu, X. and Qiu F. (2020). Response Best-subset Selector for Multivariate Regression. Manuscript.
+Hu, J., Huang, J., Liu, X. and Liu, X (2020). Response Best-subset Selector for Multivariate Regression. Manuscript.
 }
 
 \examples{ 

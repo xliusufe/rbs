@@ -40,7 +40,7 @@ procedure if \code{criteria="BH"}, and Bonferroni correction if \code{criteria="
 \references{
 Benjamini, Y. and Hochberg,  Y. (1995). Controlling the False Discovery Rate A Practical and Powerful Approach to Multiple testing. Journal of the Royal Statistical Society: Series B (Methodological). 57(1), 289-300.
 
-Hu, J., Huang, J., Liu, X. and Qiu F. (2020). Response Best-subset Selector for Multivariate Regression. Manuscript.
+Hu, J., Huang, J., Liu, X. and Liu, X. (2020). Response Best-subset Selector for Multivariate Regression. Manuscript.
 }
 
 \examples{ 

@@ -45,7 +45,7 @@
 \references{
 Chen, W. (2015). Optimality Conditions for the Minimization of Quadratic 0-1 Problems. SIAM Journal on Optimization, 25(3), 1717-1731.
 
-Hu, J., Huang, J., Liu, X. and Qiu F. (2020). Response Best-subset Selector for Multivariate Regression. Manuscript.
+Hu, J., Huang, J., Liu, X. and Liu, X (2020). Response Best-subset Selector for Multivariate Regression. Manuscript.
 }
 
 \examples{ 
