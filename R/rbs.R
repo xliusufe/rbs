@@ -12,7 +12,12 @@ rbs <- function(x,y,gamma=1.5, lambda=NULL,criteria=2,tau=1){
         } 
         dims = c(n,p,q)
         param = c(gamma,lambda)
-        fit <- .Call("RBSS", x, y, as.integer(dims), param)
+        fit <- .Call("RBSS", 
+                    as.numeric(x), 
+                    as.numeric(y), 
+                    as.integer(dims), 
+                    as.numeric(param)
+                )
     }
     else{
         if(is.null(lambda)){
@@ -23,7 +28,13 @@ rbs <- function(x,y,gamma=1.5, lambda=NULL,criteria=2,tau=1){
         nlam = length(lambda)
         dims = c(n,p,q,nlam,criteria)
         param = c(gamma,tau)
-        fit <- .Call("RBSS_BIC", x, y, lambda, as.integer(dims), param)
+        fit <- .Call("RBSS_BIC", 
+                    as.numeric(x), 
+                    as.numeric(y), 
+                    as.numeric(lambda), 
+                    as.integer(dims), 
+                    as.numeric(param)
+                )
         selected <- fit$selected + 1
         deltahat <- matrix(fit$delta,q,nlam)[,selected]
         fit$deltapath <- fit$delta
@@ -31,5 +42,5 @@ rbs <- function(x,y,gamma=1.5, lambda=NULL,criteria=2,tau=1){
         fit$selected <- selected
     }
 
-    fit
+    return(fit)
 }

@@ -12,7 +12,12 @@ pval <- function(x,y,criteria=NULL,alpha=0.05,gamma=1.15,family="Fdist",isbic=FA
         if(is.null(criteria) || criteria=="RBS"){
             if(isbic && ngamma>1){
                 dims    = c(n,p,q,ngamma)
-                fit     = .Call("PVALUES_BIC",x,y,as.integer(dims),gamma)
+                fit     = .Call("PVALUES_BIC",
+                                as.numeric(x),
+                                as.numeric(y),
+                                as.integer(dims),
+                                as.numeric(gamma)
+                            )
                 alpha1  <- pchisq(qchisq(alpha,  p, lower.tail = F)*t(matrix(fit$Sigma2,ncol = q)), p, lower.tail = F)
                 pvals   <- pchisq(matrix(rep(fit$Tn,ngamma),nrow = q)*t(matrix(fit$Sigma2,ncol = q)), p, lower.tail = F)
                 pvals1  <- pchisq(fit$Tn, p, lower.tail = F)
@@ -27,7 +32,12 @@ pval <- function(x,y,criteria=NULL,alpha=0.05,gamma=1.15,family="Fdist",isbic=FA
         if(is.null(criteria) || criteria=="RBS"){
             if(isbic){
                 dims    = c(n,p,q,ngamma)
-                fit     = .Call("PVALUES_BIC",x,y,as.integer(dims),gamma)
+                fit     = .Call("PVALUES_BIC",
+                                as.numeric(x),
+                                as.numeric(y),
+                                as.integer(dims),
+                                as.numeric(gamma)
+                            )
                 alpha1  <- pf(qf(alpha,  df1 = p, df2 = n-p, lower.tail = F)*t(matrix(fit$Sigma2,ncol = q)), df1 = p, df2 = n-p, lower.tail = F)
                 pvals   <- pf(matrix(rep(fit$Tn/p, ngamma),nrow = q)*t(matrix(fit$Sigma2, ncol = q)), df1 = p, df2 = n-p, lower.tail = F)
                 pvals1  <- pf(fit$Tn/p, p, df1 = p, df2 = n-p, lower.tail = F)
@@ -85,6 +95,6 @@ pval <- function(x,y,criteria=NULL,alpha=0.05,gamma=1.15,family="Fdist",isbic=FA
     }
 
     
-    fit
+    return(fit)
 }
 

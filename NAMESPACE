@@ -1,5 +1,5 @@
 import('quadprog')
-importFrom("stats", "pchisq", "qchisq", "qf", "pf", "lm")
+importFrom("stats", "pchisq", "qchisq", "qf", "pf", "lm", "pnorm", "rnorm")
 useDynLib(rbs)
 exportPattern("^[[:alpha:]]+")
-export(rbs, rbs_sig, rbs_qp, dcorr, sisdc, flip, pval)
+export(rbs, rbs_sig, rbs_qp, dcorr, sisdc, flip, pval,rbsrp, pvalrp)

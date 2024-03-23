@@ -15,7 +15,13 @@ rbs_sig <- function(x,y,V=NULL,gamma=1.5, lambda=NULL,criteria=2,nflip=1,tau=1){
         } 
         dims    = c(n,p,q,isV,nflip)
         param   = c(gamma,lambda)
-        fit     <- .Call("RBSS_FLIP", x, y, V, as.integer(dims), param)
+        fit     <- .Call("RBSS_FLIP", 
+                        as.numeric(x), 
+                        as.numeric(y), 
+                        as.numeric(V), 
+                        as.integer(dims), 
+                        as.numeric(param)
+                    )
     }
     else{
         if(is.null(lambda)){
@@ -26,7 +32,14 @@ rbs_sig <- function(x,y,V=NULL,gamma=1.5, lambda=NULL,criteria=2,nflip=1,tau=1){
         nlam    = length(lambda)
         dims    = c(n,p,q,nlam,isV,nflip,criteria)
         param   = c(gamma,tau)
-        fit     <- .Call("RBSS_FLIP_BIC", x, y, V, lambda, as.integer(dims), param)
+        fit     <- .Call("RBSS_FLIP_BIC", 
+                        as.numeric(x), 
+                        as.numeric(y), 
+                        as.numeric(V), 
+                        as.numeric(lambda), 
+                        as.integer(dims), 
+                        as.numeric(param)
+                    )
         selected        <- fit$selected + 1
         fit$selected    <- selected
         deltahat        <- matrix(fit$delta,q,nlam)
@@ -34,5 +47,5 @@ rbs_sig <- function(x,y,V=NULL,gamma=1.5, lambda=NULL,criteria=2,nflip=1,tau=1){
         fit$delta       <- deltahat[,selected]       
     }
     
-    fit
+    return(fit)
 }
