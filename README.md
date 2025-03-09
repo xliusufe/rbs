@@ -69,6 +69,8 @@ Chen, W. and L. Zhang (2010). Global Optimality Conditions for Quadratic 0-1 Opt
 
 Chen, W. (2015). Optimality Conditions for the Minimization of Quadratic 0-1 Problems. SIAM Journal on Optimization, 25(3), 1717-1731.
 
+Fan, J. and Lv, J. (2008). Sure independence screening for ultrahigh dimensional feature space. Journal of the Royal Statistical Society Series B: Statistical Methodology, 70(5), 849-911.
+
 Hu, J., Huang, J., Liu, X. and Liu, X. (2020). Response Best-subset Selector for Multivariate Regression. Manuscript.
 
 Li, R., W. Zhong, and L. Zhu (2012). Feature Screening Via Distance Correlation Learning. Journal of the American Statistical Association, 107 (499), 1129-1139.
@@ -79,6 +81,8 @@ Szekely, G.J. and Rizzo, M.L. (2009). Rejoinder: Brownian Distance Covariance, A
 Statistics, 3(4), 1303-1308.
 
 Szekely, G.J., Rizzo, M.L., and Bakirov, N.K. (2007). Measuring and Testing Dependence by Correlation of Distances, Annals of Statistics, 35(6), 2769-2794.
+
+Zhu, L. P., Li, L., Li, R. and Zhu, L. X. (2011). Model-free feature screening for ultrahigh-dimensional data. Journal of the American Statistical Association, 106(496), 1464-1475.
 
 # Development
 This R package is developed by Xu Liu (liu.xu@sufe.edu.cn).
