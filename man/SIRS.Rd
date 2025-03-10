@@ -8,15 +8,15 @@
   which combines a soft cutoff value and a hard cutoff.
 }
 
-\usage{sirs(y, x, standardize_X = TRUE, N = NULL, d = 10, ntop = 10)
+\usage{sirs(Y, X, standardize_X = TRUE, N = NULL, d = 10, ntop = 10)
 }
 
 \arguments{
-  \item{y}{An \eqn{n}-dimensional numeric vector.}
+  \item{Y}{An \eqn{n}-dimensional numeric vector.}
   
-  \item{x}{An \eqn{n\times p} numeric matrix.}
+  \item{X}{An \eqn{n\times p} numeric matrix.}
   
-  \item{standardize_X}{Logical flag for \eqn{x} standardization, prior to performing screening.
+  \item{standardize_X}{Logical flag for \eqn{X} standardization, prior to performing screening.
   Default is \code{standardize_X=TRUE}.}
 
   \item{N}{An integer specified by the user for the hard threshold rule, representing the number of 
@@ -49,8 +49,8 @@ p   <- 200
 beta <- c(rep(0.5, 20), rep(0, p - 20))
 eps <- rnorm(n, mean = 0, sd = 1)
 
-x <- matrix(rnorm(n*p),n,p)
-y <- x %*% beta + eps
+X <- matrix(rnorm(n*p),n,p)
+Y <- X \%*\% beta + eps
 
-fit <- sirs(y,x)
+fit <- sirs(Y,X)
 }

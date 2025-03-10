@@ -4,16 +4,16 @@
   Sure independence screening (SIS)
 }
 \description{
-  Screening procedure based on Pearson correlation coefficient of \eqn{y} and \eqn{x}.
+  Screening procedure based on Pearson correlation coefficient of \eqn{Y} and \eqn{X}.
 }
 
-\usage{sis(y, x, ntop=10)
+\usage{sis(Y, X, ntop=10)
 }
 
 \arguments{
-  \item{y}{An \eqn{n}-dimensional numeric vector.}
+  \item{Y}{An \eqn{n}-dimensional numeric vector.}
   
-  \item{x}{An \eqn{n\times p} numeric matrix.}
+  \item{X}{An \eqn{n\times p} numeric matrix.}
   
   \item{ntop}{An integer specifying the number of top correlated variables (\code{ntop}) whose indices will be output.}
 }
@@ -38,8 +38,8 @@ p   <- 200
 beta <- c(rep(0.5, 20), rep(0, p - 20))
 eps <- rnorm(n, mean = 0, sd = 1)
 
-x <- matrix(rnorm(n*p),n,p)
-y <- x %*% beta + eps
+X <- matrix(rnorm(n*p),n,p)
+Y <- X \%*\% beta + eps
 
-fit <- sis(y,x)
+fit <- sis(Y,X)
 }

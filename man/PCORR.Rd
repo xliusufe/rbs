@@ -4,22 +4,22 @@
   Pearson correlation coefficient
 }
 \description{
-  Pearson correlation coefficient vector between an n-dimensional vector \eqn{y} and an n-by-p matrix \eqn{x}.
+  Pearson correlation coefficient vector between an n-dimensional vector \eqn{Y} and an n-by-p matrix \eqn{X}.
 }
 
 \usage{
-  pcorr(y,x)
+  pcorr(Y,X)
 }
 
 \arguments{
-  \item{y}{An \eqn{n}-dimensional numeric vector.}
+  \item{Y}{An \eqn{n}-dimensional numeric vector.}
   
-  \item{x}{An \eqn{n\times p} numeric matrix.}
+  \item{X}{An \eqn{n\times p} numeric matrix.}
 }
 
 \value{
   \item{pcor}{A \eqn{p}-dimensional vector, where the i-th element corresponds to the Pearson correlation 
-  coefficient between \eqn{y} and the i-th column of \eqn{x}.}
+  coefficient between \eqn{Y} and the i-th column of \eqn{X}.}
 }
 
 \examples{ 
@@ -29,9 +29,9 @@ p   <- 200
 beta <- c(rep(0.5, 20), rep(0, p - 20))
 eps <- rnorm(n, mean = 0, sd = 1)
 
-x <- matrix(rnorm(n*p),n,p)
-y <- x %*% beta + eps
+X <- matrix(rnorm(n*p),n,p)
+Y <- X \%*\% beta + eps
 
-pcor <- pcorr(y,x)
+pcor <- pcorr(Y,X)
 
 }
