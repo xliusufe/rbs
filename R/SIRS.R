@@ -23,6 +23,6 @@ sirs <- function(Y, X, standardize_X = TRUE, N = NULL, d = 10, ntop = 10){
                 as.integer(ntop)
             )
 
-    fit <- fit + 1
+    fit$indn <- fit$indn + 1
     return(fit)
 }

@@ -30,6 +30,8 @@
 }
 
 \value{
+  \item{omega}{The entire correlation vector consists of the values \eqn{\omega_k, k=1,\cdots,p}, as defined in Zhu et al. (2011).}
+
   \item{indn}{The indices of the top \code{ntop} most correlated variables. 
   If \code{ntop} exceeds the number of variables selected by the combined soft and hard threshold rules, 
   the indices of all variables selected by the threshold rules are returned. 

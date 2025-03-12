@@ -111,6 +111,11 @@ SEXP _SIRS(SEXP Y_, SEXP X_, SEXP DIM_, SEXP N_, SEXP d_, SEXP dd_) {
     double *y = REAL(Y_);
     double *x = REAL(X_);
 
+    double *omega = (double *)malloc(p * sizeof(double));
+    for (i = 0; i < p; i++) {
+        omega[i] = compute_omega_k(y, x, n, p, i);
+    }
+
     SEXP rA;
     PROTECT(rA = allocVector(INTSXP, p));
     int *A = INTEGER(rA); // Get pointer
@@ -134,6 +139,21 @@ SEXP _SIRS(SEXP Y_, SEXP X_, SEXP DIM_, SEXP N_, SEXP d_, SEXP dd_) {
         memcpy(INTEGER(rA_final), A, dd * sizeof(int));
     }
 
-    UNPROTECT(2);
-    return rA_final;
+    SEXP rOmega;
+    PROTECT(rOmega = allocVector(REALSXP, p));
+    memcpy(REAL(rOmega), omega, p * sizeof(double));
+
+    SEXP list, list_names;
+    char *names[2] = {"omega", "indn"};
+    PROTECT(list_names = allocVector(STRSXP, 2));
+    for (i = 0; i < 2; i++) {
+        SET_STRING_ELT(list_names, i, mkChar(names[i]));
+    }
+    PROTECT(list = allocVector(VECSXP, 2));
+    SET_VECTOR_ELT(list, 0, rOmega);
+    SET_VECTOR_ELT(list, 1, rA_final);
+    setAttrib(list, R_NamesSymbol, list_names);
+
+    UNPROTECT(5);
+    return list;
 }
